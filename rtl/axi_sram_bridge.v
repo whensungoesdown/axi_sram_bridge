@@ -1,0 +1,55 @@
+module axi_sram_bridge#(
+    parameter   BUS_WIDTH  = 32,
+    parameter   DATA_WIDTH = 64, 
+    parameter   CPU_WIDTH  = 32
+)
+(
+    input  wire                     aclk     ,
+    input  wire                     aresetn  ,
+    output wire [BUS_WIDTH-1    :0] ram_raddr,
+    input  wire [DATA_WIDTH-1   :0] ram_rdata,
+    output wire                     ram_ren  ,
+    output wire [BUS_WIDTH-1    :0] ram_waddr,
+    output wire [DATA_WIDTH-1   :0] ram_wdata,
+    output wire [DATA_WIDTH/8-1 :0] ram_wen  ,
+    input  wire [BUS_WIDTH-1    :0] m_araddr ,
+    input  wire [1              :0] m_arburst,
+    input  wire [3              :0] m_arcache,
+    input  wire [3              :0] m_arid   ,
+    input  wire [3              :0] m_arlen  ,
+    input  wire [1              :0] m_arlock ,
+    input  wire [2              :0] m_arprot ,
+    output wire                     m_arready,
+    input  wire [2              :0] m_arsize ,
+    input  wire                     m_arvalid,
+    input  wire [BUS_WIDTH-1    :0] m_awaddr ,
+    input  wire [1              :0] m_awburst,
+    input  wire [3              :0] m_awcache,
+    input  wire [3              :0] m_awid   ,
+    input  wire [3              :0] m_awlen  ,
+    input  wire [1              :0] m_awlock ,
+    input  wire [2              :0] m_awprot ,
+    output wire                     m_awready,
+    input  wire [2              :0] m_awsize ,
+    input  wire                     m_awvalid,
+    output wire [3              :0] m_bid    ,
+    input  wire                     m_bready ,
+    output wire [1              :0] m_bresp  ,
+    output wire                     m_bvalid ,
+    output wire [DATA_WIDTH-1   :0] m_rdata  ,
+    output wire [3              :0] m_rid    ,
+    output wire                     m_rlast  ,
+    input  wire                     m_rready ,
+    output wire [1              :0] m_rresp  ,
+    output wire                     m_rvalid ,
+    input  wire [DATA_WIDTH-1   :0] m_wdata  ,
+    input  wire [3              :0] m_wid    ,
+    input  wire                     m_wlast  ,
+    output wire                     m_wready ,
+    input  wire [DATA_WIDTH/8-1 :0] m_wstrb  ,
+    input  wire                     m_wvalid 
+);
+
+endmodule // soc_axi_sram_bridge
+
+   

@@ -1,0 +1,18 @@
+
+# need at least one \n at the begining
+
+
+# Yes, it is safe to ignore incomplete I/O assignment warning messages in the Quartus® II software, for dual purpose configuration pins that are used for Active Parallel (AP) configuration.
+# The current strength and slew rate assignments on these AP configuration pins should be left to default, but this will result in the generation of incomplete I/O assignment warning messages by the Quartus II software related to missing drive strength and slew rate assignments.
+
+set_location_assignment PIN_23 -to clk
+set_location_assignment PIN_87 -to reset
+set_location_assignment PIN_142 -to vga_hsync
+set_location_assignment PIN_143 -to vga_vsync
+set_location_assignment PIN_144 -to vga_rgb[0]
+set_location_assignment PIN_1 -to vga_rgb[1]
+set_location_assignment PIN_2 -to vga_rgb[2]
+#set_location_assignment PIN_33 -to uart_rxd
+set_location_assignment PIN_114 -to uart_rxd
+set_location_assignment PIN_113 -to uart_txd
+
