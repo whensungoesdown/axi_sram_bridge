@@ -7,6 +7,9 @@
 
 PROJECT = top
 SOURCE_FILES =  ../../rtl/axi_sram_bridge.v \
+		../../rtl/defines.vh \
+		../../rtl/sram.v \
+		../../rtl/cpu.v \
 		../../rtl/top.v 
 
 SOURCE_FILES_PARAMETER = $(addprefix --source=, $(SOURCE_FILES))
