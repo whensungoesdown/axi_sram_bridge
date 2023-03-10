@@ -12,18 +12,25 @@ module top_tb(
    initial
       begin
 	 $display("Start ...");
-	 clk = 1'b0;
+	 clk = 1'b1;
 	 resetn = 1'b0;
-	 #30;
+ 
+	 #32;
 	 resetn = 1'b1;
 
 	 
 	 force u_top.fake_cpu.araddr = 32'h0;
 	 force u_top.fake_cpu.arvalid = 1'b1;
 
-	 //#10
+	 force u_top.fake_cpu.rready = 1'b0;
+	 #10
 	 //release u_top.fake_cpu.araddr;
-	 //release u_top.fake_cpu.arvalid;
+	 force u_top.fake_cpu.arvalid = 1'b0;
+
+	 #50
+	 force u_top.fake_cpu.rready = 1'b1;
+	 #10
+	 force u_top.fake_cpu.rready = 1'b0;
       end
 
    always #5 clk=~clk;

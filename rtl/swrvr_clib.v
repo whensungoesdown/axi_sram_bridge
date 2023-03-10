@@ -26,12 +26,12 @@
 */                 
 
 // uty: test
-`define FPGA_SYN
+`define NO_SCAN
 
 
-`ifdef FPGA_SYN 
-`define NO_SCAN 
-`endif
+//`ifdef FPGA_SYN 
+//`define NO_SCAN 
+//`endif
 
 //`timescale 1ps / 1ps
 

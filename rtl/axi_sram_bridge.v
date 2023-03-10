@@ -55,22 +55,34 @@ module axi_sram_bridge(
 );
 
    wire ar_enter;
-   //wire r_retire;
-   //wire busy;
+   wire r_retire;
+   wire busy;
 
    wire rdata_valid;
    //wire [`Lrdata - 1 :0] rdata;
 
    assign ar_enter = m_arvalid & m_arready;
-   //assign r_retire = m_rvalid & m_rready & m_rlast;
-   // not sure about the busy signal
-   //  ar_enter     ar_retire       busy
+   assign r_retire = m_rvalid & m_rready & m_rlast;
+   //
+   // busy means that rready haven't come yet, so the sram
+   // cannot accept new read, hence ar_ready should stay 0.
+   //
+   //  ar_enter      r_retire       busy
    //     0              0           0
    //     1              0           1
    //     0              1           0
-   //     1              1           1
+   //     1              1           0   (should not happen)
 
 
+   dffrl_s #(1) busy_reg (
+      .din   (ar_enter & (~r_retire)),
+      .clk   (aclk),
+      .rst_l (aresetn),
+      .q     (busy), 
+      .se(), .si(), .so());
+
+
+   assign m_arready = ~busy;
 
    //
    // If the ar_enter (address send in) in previous cycle,
@@ -78,16 +90,25 @@ module axi_sram_bridge(
    //
    // Need to change logic if the sram's delay is not 1 cycle
    //
-   dff_s #(1) rdata_valid_reg (
-      .din (ar_enter),
-      .clk (aclk),
-      .q   (rdata_valid),    // rdata_valid on the next cycle
-      .se(), .si(), .so());
+//   dff_s #(1) rdata_valid_reg (
+//      .din (ar_enter),
+//      .clk (aclk),
+//      .q   (rdata_valid),    // rdata_valid on the next cycle
+//      .se(), .si(), .so());
    
+   wire rdata_valid_next;
+
+   assign rdata_valid_next = (rdata_valid | ar_enter) & (~m_rready);
+   
+   dff_s #(1) rdata_valid_reg (
+      .din (rdata_valid_next),
+      .clk (aclk),
+      .q   (rdata_valid),
+      .se(), .si(), .so());
 
 
    assign ram_raddr = m_araddr;
-   assign m_arready = 1'b1;  // single cycle ram, always ready
+   //assign m_arready = 1'b1;  // single cycle ram, always ready
    assign ram_ren = ar_enter;
 
    
@@ -101,7 +122,8 @@ module axi_sram_bridge(
    assign m_rlast = 1'b1;
    assign m_rresp = `Lrresp'b0; // optional
    assign m_rdata = ram_rdata;
-   assign m_rvalid = rdata_valid;
+   assign m_rvalid = rdata_valid; 
+   //assign m_rvalid = busy; 
 
 endmodule // soc_axi_sram_bridge
 
