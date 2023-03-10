@@ -7,6 +7,8 @@
 
 PROJECT = top
 SOURCE_FILES =  ../../rtl/axi_sram_bridge.v \
+		../../rtl/swrvr_clib.v \
+		../../rtl/swrvr_dlib.v \
 		../../rtl/defines.vh \
 		../../rtl/sram.v \
 		../../rtl/cpu.v \

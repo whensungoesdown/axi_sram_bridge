@@ -54,6 +54,55 @@ module axi_sram_bridge(
     input  wire                      m_wvalid 
 );
 
+   wire ar_enter;
+   //wire r_retire;
+   //wire busy;
+
+   wire rdata_valid;
+   //wire [`Lrdata - 1 :0] rdata;
+
+   assign ar_enter = m_arvalid & m_arready;
+   //assign r_retire = m_rvalid & m_rready & m_rlast;
+   // not sure about the busy signal
+   //  ar_enter     ar_retire       busy
+   //     0              0           0
+   //     1              0           1
+   //     0              1           0
+   //     1              1           1
+
+
+
+   //
+   // If the ar_enter (address send in) in previous cycle,
+   // then data ready in this cycle  
+   //
+   // Need to change logic if the sram's delay is not 1 cycle
+   //
+   dff_s #(1) rdata_valid_reg (
+      .din (ar_enter),
+      .clk (aclk),
+      .q   (rdata_valid),    // rdata_valid on the next cycle
+      .se(), .si(), .so());
+   
+
+
+   assign ram_raddr = m_araddr;
+   assign m_arready = 1'b1;  // single cycle ram, always ready
+   assign ram_ren = ar_enter;
+
+   
+//   dff_s #(`Lrdata) rdata_reg (
+//      .din (ram_rdata),
+//      .clk (aclk),
+//      .q   (rdata),
+//      .se(), .si(), .so());
+   
+   assign m_rid = `Lrid'b0;
+   assign m_rlast = 1'b1;
+   assign m_rresp = `Lrresp'b0; // optional
+   assign m_rdata = ram_rdata;
+   assign m_rvalid = rdata_valid;
+
 endmodule // soc_axi_sram_bridge
 
    

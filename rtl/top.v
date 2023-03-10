@@ -114,10 +114,10 @@ module top(
    
    sram ram(
       .clock        (clk             ),
-      .rdaddress    (ram_raddr[13:3] ), // 1c000000
+      .rdaddress    (ram_raddr[14:2] ),
       .q            (ram_rdata       ),
       .rden         (ram_ren         ),
-      .wraddress    (ram_waddr[13:3] ),
+      .wraddress    (ram_waddr[14:2] ),
       .data         (ram_wdata       ),
       .wren         (|ram_wen        )
       );
