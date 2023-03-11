@@ -74,10 +74,11 @@ module axi_sram_bridge(
    //     1              1           0   (should not happen)
 
 
-   dffrl_s #(1) busy_reg (
+   dffrle_s #(1) busy_reg (
       .din   (ar_enter & (~r_retire)),
       .clk   (aclk),
       .rst_l (aresetn),
+      .en    (ar_enter | r_retire),
       .q     (busy), 
       .se(), .si(), .so());
 
