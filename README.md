@@ -1,3 +1,9 @@
 # axi_sram_bridge
 
-Try axi lite protocol
+## Read channle  ar r
+
+
+arid rid are omitted.
+
+
+
