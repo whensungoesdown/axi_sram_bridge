@@ -101,10 +101,11 @@ module axi_sram_bridge(
 
    assign rdata_valid_next = (rdata_valid | ar_enter) & (~m_rready);
    
-   dff_s #(1) rdata_valid_reg (
-      .din (rdata_valid_next),
-      .clk (aclk),
-      .q   (rdata_valid),
+   dffrl_s #(1) rdata_valid_reg (
+      .din   (rdata_valid_next),
+      .clk   (aclk),
+      .rst_l (aresetn),
+      .q     (rdata_valid),
       .se(), .si(), .so());
 
 
