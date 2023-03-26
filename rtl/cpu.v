@@ -48,13 +48,13 @@ module cpu(
    output                       bready
    );
 
-   wire axi_rd_req;
-   wire axi_rd_ret;
+   //wire axi_rd_req;
+   //wire axi_rd_ret;
 
 //   assign rready = 1'b1;
    
-   assign axi_rd_req = arvalid && arready;
-   assign axi_rd_ret = rvalid && rlast && rready;// && (rid[3:1]==3'b000);
+   //assign axi_rd_req = arvalid && arready;
+   //assign axi_rd_ret = rvalid && rlast && rready;// && (rid[3:1]==3'b000);
 
    
 endmodule // cpu
