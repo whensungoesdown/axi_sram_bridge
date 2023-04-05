@@ -54,6 +54,8 @@ module top_tb(
 	 if (1'b1 === u_top.fake_cpu.axi_rd_ret)
 	    begin
 	       $display("read back data 0x%x", u_top.fake_cpu.rdata);
+	       $display("\nPASS!\n");
+	       $finish;
 	    end
       end
    

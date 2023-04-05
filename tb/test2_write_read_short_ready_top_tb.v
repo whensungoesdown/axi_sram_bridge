@@ -86,7 +86,8 @@ module top_tb(
 	    begin
 	       force u_top.fake_cpu.rready = 1'b0;
 	       $display("read out addr 0x4: 0x%x", u_top.fake_cpu.rdata);
-	       //$finish;
+	       $display("\nPASS!\n");
+	       $finish;
 	    end
 	 
       end
