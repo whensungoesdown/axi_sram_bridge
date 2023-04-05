@@ -65,6 +65,7 @@ module axi_sram_bridge(
 
    wire rdata_valid_tmp;
    wire rdata_valid;
+   wire rdata_valid_next;
    //wire [`Lrdata - 1 :0] rdata;
 
    assign ar_enter = m_arvalid & m_arready;
