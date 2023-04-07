@@ -30,7 +30,7 @@ module top_tb(
 	 force u_top.fake_cpu.awaddr = 32'h4;
 	 force u_top.fake_cpu.awvalid = 1'b1;
 
-	 force u_top.fake_cpu.wdata = 32'habcdaaaa;
+	 force u_top.fake_cpu.wdata = 64'habcdaaaa12345678;
 	 force u_top.fake_cpu.wlast = 1'b1;
 	 force u_top.fake_cpu.wvalid = 1'b1;
 	 #10
@@ -89,7 +89,10 @@ module top_tb(
 	    begin
 	       force u_top.fake_cpu.rready = 1'b0;
 	       $display("read out addr 0x4: 0x%x", u_top.fake_cpu.rdata);
-	       $display("\nPASS!\n");
+	       if (64'habcdaaaa12345678 === u_top.fake_cpu.rdata)
+	       begin
+		       $display("\nPASS!\n");
+	       end 
 	       $finish;
 	    end
 	 
