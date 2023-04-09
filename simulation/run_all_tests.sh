@@ -19,3 +19,10 @@ echo "test2_write_read_short_ready"
 ./simulate.sh | grep PASS
 echo ""
 cd ..
+
+cd test3_write_read_read_rready_always1
+echo "test3_write_read_read_rready_always1"
+./simulate.sh | grep PASS
+echo ""
+cd ..
+

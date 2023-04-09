@@ -19,3 +19,9 @@ echo "test2_write_read_short_ready"
 ./clean.sh
 echo ""
 cd ..
+
+cd test3_write_read_read_rready_always1
+echo "test3_write_read_read_rready_always1"
+./clean.sh
+echo ""
+cd ..
