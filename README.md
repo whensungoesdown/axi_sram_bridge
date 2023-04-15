@@ -2,10 +2,16 @@
 
 **Developing...**
 
-## Read channle  ar r
+
+# Simple AXI-lite Sram Bridge
 
 
-![screenshot0](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/2023-03-11-0.png)
+## AXI-lite Single Write
+
+
+![axi_sram_bridge_single_write](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/axi_sram_bridge_single_write.png)
+
+
 
 
 
