@@ -95,11 +95,13 @@ module top_tb(
 	      begin
 		      force u_top.fake_cpu.awaddr = 32'h0;
 		      force u_top.fake_cpu.awvalid = 1'b0;
+		      force u_top.fake_cpu.awsize = 3'b0;
 	      end
 	      if (u_top.fake_cpu.wready === 1'b1 && u_top.fake_cpu.wvalid === 1'b1)
 	      begin
 		      force u_top.fake_cpu.wdata = 32'h00000000;
 		      force u_top.fake_cpu.wlast = 1'b0;
+		      force u_top.fake_cpu.wstrb = 4'b0;
 		      force u_top.fake_cpu.wvalid = 1'b0;
 	      end
 
