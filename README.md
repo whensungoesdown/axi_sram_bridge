@@ -13,5 +13,9 @@
 
 
 
+## AXI-lite Multiple Write
+
+
+![axi_sram_bridge_multiple_write](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/axi_sram_bridge_multiple_write.png)
 
 
