@@ -32,7 +32,7 @@ module top_tb(
 	 force u_top.fake_cpu.rready = 1'b0;
 	 force u_top.fake_cpu.bready = 1'b0;
 
-	 // start singals, action0
+
 	 force u_top.fake_cpu.awid = 4'h0;
 	 force u_top.fake_cpu.awsize = 3'h0;
 	 force u_top.fake_cpu.awaddr = 32'h0;
