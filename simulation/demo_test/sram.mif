@@ -22,12 +22,12 @@ DATA_RADIX=HEX;
 
 CONTENT BEGIN
         0:              AABBCC00;  --           xx
-        1:              AABBCC01;  --           xx
-        2:              AABBCC02;  --           xx
-        3:              AABBCC03;  --           xx
-        4:              AABBCC04;  --           xx
-        5:              AABBCC05;  --           xx
-        6:              AABBCC06;  --           xx
+        1:              AABBCC04;  --           xx
+        2:              AABBCC08;  --           xx
+        3:              AABBCC0c;  --           xx
+        4:              AABBCC10;  --           xx
+        5:              AABBCC14;  --           xx
+        6:              AABBCC18;  --           xx
 
 
         [7..1FFF]  :    AABBCCDD; -- nop

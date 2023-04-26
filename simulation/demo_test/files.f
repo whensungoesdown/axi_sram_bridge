@@ -8,5 +8,5 @@
 ../../rtl/sram.v 
 ../../rtl/cpu.v 
 ../../rtl/top.v 
-../../tb/test0_read_top_tb.v
+../../tb/demo_test_top_tb.v
 

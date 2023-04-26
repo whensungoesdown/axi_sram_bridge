@@ -1,4 +1,4 @@
-`define AXI64
+//`define AXI64
 
 `define BUS_WIDTH      32
 
@@ -81,3 +81,6 @@
 `define Lrready        1
 `define Lrrequest      1
 
+
+
+`define GRLEN         32

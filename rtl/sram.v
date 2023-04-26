@@ -4,7 +4,7 @@
 // MODULE: altsyncram 
 
 // ============================================================
-// File Name: sram64.v
+// File Name: sram.v
 // Megafunction Name(s):
 // 			altsyncram
 //
@@ -46,12 +46,12 @@ module sram (
 	q);
 
 	input	  clock;
-	input	[63:0]  data;
+	input	[31:0]  data;
 	input	[12:0]  rdaddress;
 	input	  rden;
 	input	[12:0]  wraddress;
 	input	  wren;
-	output	[63:0]  q;
+	output	[31:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
@@ -62,8 +62,8 @@ module sram (
 // synopsys translate_on
 `endif
 
-	wire [63:0] sub_wire0;
-	wire [63:0] q = sub_wire0[63:0];
+	wire [31:0] sub_wire0;
+	wire [31:0] q = sub_wire0[31:0];
 
 	altsyncram	altsyncram_component (
 				.address_a (wraddress),
@@ -84,7 +84,7 @@ module sram (
 				.clocken1 (1'b1),
 				.clocken2 (1'b1),
 				.clocken3 (1'b1),
-				.data_b ({64{1'b1}}),
+				.data_b ({32{1'b1}}),
 				.eccstatus (),
 				.q_a (),
 				.rden_a (1'b1),
@@ -108,8 +108,8 @@ module sram (
 		altsyncram_component.read_during_write_mode_mixed_ports = "DONT_CARE",
 		altsyncram_component.widthad_a = 13,
 		altsyncram_component.widthad_b = 13,
-		altsyncram_component.width_a = 64,
-		altsyncram_component.width_b = 64,
+		altsyncram_component.width_a = 32,
+		altsyncram_component.width_b = 32,
 		altsyncram_component.width_byteena_a = 1;
 
 
@@ -148,7 +148,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MEMSIZE NUMERIC "524288"
+// Retrieval info: PRIVATE: MEMSIZE NUMERIC "262144"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING "sram.mif"
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
@@ -168,10 +168,10 @@ endmodule
 // Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 // Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
 // Retrieval info: PRIVATE: VarWidth NUMERIC "0"
-// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "64"
-// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "64"
-// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "64"
-// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "64"
+// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "32"
+// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "32"
 // Retrieval info: PRIVATE: WRADDR_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRCTRL_ACLR_B NUMERIC "0"
@@ -196,12 +196,12 @@ endmodule
 // Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "DONT_CARE"
 // Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "13"
 // Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "13"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "64"
-// Retrieval info: CONSTANT: WIDTH_B NUMERIC "64"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "32"
+// Retrieval info: CONSTANT: WIDTH_B NUMERIC "32"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
-// Retrieval info: USED_PORT: data 0 0 64 0 INPUT NODEFVAL "data[63..0]"
-// Retrieval info: USED_PORT: q 0 0 64 0 OUTPUT NODEFVAL "q[63..0]"
+// Retrieval info: USED_PORT: data 0 0 32 0 INPUT NODEFVAL "data[31..0]"
+// Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL "q[31..0]"
 // Retrieval info: USED_PORT: rdaddress 0 0 13 0 INPUT NODEFVAL "rdaddress[12..0]"
 // Retrieval info: USED_PORT: rden 0 0 0 0 INPUT VCC "rden"
 // Retrieval info: USED_PORT: wraddress 0 0 13 0 INPUT NODEFVAL "wraddress[12..0]"
@@ -209,14 +209,14 @@ endmodule
 // Retrieval info: CONNECT: @address_a 0 0 13 0 wraddress 0 0 13 0
 // Retrieval info: CONNECT: @address_b 0 0 13 0 rdaddress 0 0 13 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @data_a 0 0 64 0 data 0 0 64 0
+// Retrieval info: CONNECT: @data_a 0 0 32 0 data 0 0 32 0
 // Retrieval info: CONNECT: @rden_b 0 0 0 0 rden 0 0 0 0
 // Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
-// Retrieval info: CONNECT: q 0 0 64 0 @q_b 0 0 64 0
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64.v TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64.inc FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64.bsf FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sram64_bb.v FALSE
+// Retrieval info: CONNECT: q 0 0 32 0 @q_b 0 0 32 0
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram.inc FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram.cmp FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram.bsf FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram_inst.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sram_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf

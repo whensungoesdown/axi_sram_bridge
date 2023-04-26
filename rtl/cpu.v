@@ -56,5 +56,79 @@ module cpu(
    assign axi_rd_req = arvalid && arready;
    assign axi_rd_ret = rvalid && rlast && rready;// && (rid[3:1]==3'b000);
 
+
+   wire          inst_req;
+   wire [31:0]   inst_addr;
+   wire [31:0]   inst_rdata;
+   wire          inst_valid;
+
+   wire [31:0]   inst_addr_nxt;
+
+   assign inst_req = resetn; // always high after reset
+  
+   dffrle_s #(32) inst_addr_reg (
+      .din   (inst_addr_nxt),
+      .clk   (clk),
+      .en    (inst_valid),
+      .rst_l (resetn),
+      .q     (inst_addr), 
+      .se(), .si(), .so());
+   
+   //assign inst_addr = 31'h10;
+   assign inst_addr_nxt = inst_addr + 32'h4;
+   
+   
+   axi_interface u_axi_interface(
+      .aclk        (clk        ),
+      .aresetn     (resetn     ), 
+
+
+      .arid	   (arid       ),
+      .araddr	   (araddr     ),
+      .arlen	   (arlen      ),
+      .arsize	   (arsize     ),
+      .arburst	   (arburst    ),
+      .arlock	   (arlock     ),
+      .arcache	   (arcache    ),
+      .arprot	   (arprot     ),
+      .arvalid	   (arvalid    ),
+      .arready	   (arready    ),
+
+      .rid	   (rid        ),
+      .rdata	   (rdata      ),
+      .rresp	   (rresp      ),
+      .rlast	   (rlast      ),
+      .rvalid	   (rvalid     ),
+      .rready	   (rready     ),
+
+
+      .awid	   (awid       ),
+      .awaddr	   (awaddr     ),
+      .awlen	   (awlen      ),
+      .awsize	   (awsize     ),
+      .awburst	   (awburst    ),
+      .awlock	   (awlock     ),
+      .awcache	   (awcache    ),
+      .awprot	   (awprot     ),
+      .awvalid	   (awvalid    ),
+      .awready	   (awready    ),
+
+      .wid	   (wid        ),
+      .wdata	   (wdata      ),
+      .wstrb	   (wstrb      ),
+      .wlast	   (wlast      ),
+      .wvalid	   (wvalid     ),
+      .wready	   (wready     ),
+
+      .bid	   (bid        ),
+      .bresp	   (bresp      ),
+      .bvalid	   (bvalid     ),
+      .bready	   (bready     ),
+
+      .inst_req    (inst_req   ),
+      .inst_addr   (inst_addr  ),
+      .inst_valid  (inst_valid ),
+      .inst_rdata  (inst_rdata )
+      );
    
 endmodule // cpu
