@@ -27,3 +27,21 @@ A read takes at least 2 cycles.
 
 ![axi_sram_bridge_single_read1](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/axi_sram_bridge_single_read1.png)
 ![axi_sram_bridge_single_read2](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/axi_sram_bridge_single_read2.png)
+
+
+# Build
+
+Add "export PATH=$PATH:/mnt/c/intelFPGA_lite/19.1/quartus/bin64" to ~/.bashrc
+
+cd systhesis
+
+cd altera
+
+make 
+
+## For Windows WSL
+
+Change quartus_xx to quartus_xx.exe in makefile.
+
+
+
