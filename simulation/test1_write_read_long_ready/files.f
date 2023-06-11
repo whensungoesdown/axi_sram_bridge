@@ -1,4 +1,5 @@
-/home/u/altera/13.1/quartus/eda/sim_lib/altera_mf.v
+#/home/u/altera/13.1/quartus/eda/sim_lib/altera_mf.v
+../altera_mf.v
 ../../rtl/defines.vh
 ../../rtl/axi_interface.v
 ../../rtl/axi_sram_bridge.v
@@ -8,5 +9,5 @@
 ../../rtl/sram.v 
 ../../rtl/cpu.v 
 ../../rtl/top.v 
-../../tb/test0_read_top_tb.v
+../../tb/test1_write_read_long_ready_top_tb.v
 
