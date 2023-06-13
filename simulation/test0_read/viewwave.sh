@@ -1,3 +1,3 @@
 #!/bin/bash
 
-vsim -view result.wlf
+vsim.exe -view result.wlf

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-vsim -do display.do -view result.wlf
+vsim.exe -do display.do -view result.wlf
 
 

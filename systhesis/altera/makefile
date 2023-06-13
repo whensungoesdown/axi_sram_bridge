@@ -60,29 +60,29 @@ STA_ARGS =
 STAMP = echo done >
 
 $(PROJECT).map.rpt: map.chg $(SOURCE_FILES) 
-	quartus_map $(MAP_ARGS) $(PROJECT)
+	quartus_map.exe $(MAP_ARGS) $(PROJECT)
 	$(STAMP) fit.chg
 
 $(PROJECT).fit.rpt: fit.chg $(PROJECT).map.rpt
-	quartus_fit $(FIT_ARGS) $(PROJECT)
+	quartus_fit.exe $(FIT_ARGS) $(PROJECT)
 	$(STAMP) asm.chg
 	$(STAMP) sta.chg
 
 $(PROJECT).asm.rpt: asm.chg $(PROJECT).fit.rpt
-	quartus_asm $(ASM_ARGS) $(PROJECT)
+	quartus_asm.exe $(ASM_ARGS) $(PROJECT)
 
 $(PROJECT).sta.rpt: sta.chg $(PROJECT).fit.rpt
-	quartus_sta $(STA_ARGS) $(PROJECT) 
+	quartus_sta.exe $(STA_ARGS) $(PROJECT) 
 
 smart.log: $(ASSIGNMENT_FILES)
-	quartus_sh --determine_smart_action $(PROJECT) > smart.log
+	quartus_sh.exe --determine_smart_action $(PROJECT) > smart.log
 
 ###################################################################
 # Project initialization
 ###################################################################
 
 $(ASSIGNMENT_FILES):
-	quartus_sh --prepare $(PROJECT)
+	quartus_sh.exe --prepare $(PROJECT)
 	-cat $(BOARD) >> $(PROJECT).qsf
 
 map.chg:
