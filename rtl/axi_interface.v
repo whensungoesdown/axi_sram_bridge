@@ -86,6 +86,20 @@ module axi_interface(
    );
 
 
+   // 
+   // priority lsu_read lsu_write ifu_fetch
+   // 
+
+   wire                ifu_fetch;
+   wire                lsu_read;
+   wire                lsu_write;
+
+   assign ifu_fetch = inst_req & ~lsu_write & ~lsu_read;
+   assign lsu_read  = data_req & ~lsu_write;
+   assign lsu_write = data_req & data_wr;
+
+
+
    wire [`Laraddr-1:0] araddr_nxt;
    wire                arvalid_nxt;
    wire                arvalid_tmp;
@@ -99,7 +113,13 @@ module axi_interface(
    assign arcache = `Larcache'h0;
    assign arprot  = `Larprot'h0;
 
-   assign araddr_nxt = inst_addr;
+   //assign araddr_nxt = inst_addr;
+   mux2ds #(`GRLEN) mux_araddr (.dout(araddr_nxt),
+	   .in0  (inst_addr),
+	   .in1  (data_addr),
+	   .sel0 (ifu_fetch),
+	   .sel1 (lsu_read));
+  
 
    dffe_s #(`Laraddr) araddr_reg (
       .din   (araddr_nxt),
@@ -128,8 +148,12 @@ module axi_interface(
 
    assign rready = 1'b1;
 
-   assign inst_valid = rready & rvalid;
-   assign inst_rdata = rdata;
+   assign inst_valid = (rready & rvalid) & ifu_fetch;
+   assign inst_rdata = (rdata          ) & {`GRLEN{ifu_fetch}};
+
+   assign data_data_ok = (rready & rvalid) & lsu_read;
+   assign data_rdata   = (rdata          ) & {`GRLEN{lsu_read}};
+
 
 
 
